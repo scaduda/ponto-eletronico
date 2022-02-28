@@ -1,0 +1,32 @@
+version: "3"
+services:
+    db:
+        image: mysql:5.7
+        container_name: ponto-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ponto
+            MYSQL_ROOT_PASSWORD: 123456
+            MYSQL_PASSWORD: 123456
+            MYSQL_USER: sam
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+        ports:
+            - '3306:3306'
+
+    ponto-eletronico:
+        working_dir: /app
+        image: webdevops/php-apache-dev:8.1
+        container_name: ponto-eletronico
+        build:
+            context: .
+        ports:
+            - "8080:80"
+        volumes:
+            - ".:/app"
+        restart: always
+        environment:
+            ANBIENT: 2
+            PHP_DATE_TIMEZONE: America/Maceio
