@@ -3,7 +3,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #DDD;
+    background: rgb(5,85,130);
+    background: linear-gradient(146deg, rgba(5,85,130,1) 44%, rgba(0,206,255,1) 100%);
 }
 
 .form-login {
@@ -21,3 +22,4 @@ body {
     display: flex;
     justify-content: flex-end;
 }
+
