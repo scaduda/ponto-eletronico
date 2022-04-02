@@ -8,32 +8,39 @@
     <link rel="stylesheet" href="../../public/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../public/assets/css/icofont.min.css">
     <link rel="stylesheet" href="../../public/assets/css/login.css">
-    <title>Ponto Web</title>
+    <title>Ponto Eletrônico</title>
 </head>
 <body>
-<form class="form-login" action='#' method="post">
+<?php
+$errors = [];
+$email = '';
+?>
+<form class="form-login" action="#" method="post">
     <div class="login-card card">
         <div class="card-header">
             <i class="icofont-finger-print mr-1"></i>
             <span class="font-weight-bold">Ponto Web</span>
         </div>
         <div class="card-body">
-            <?php include(VIEW_PATH . 'template/messages.php')?>
+            <?php include(TEMPLATE_PATH . '/messages.php') ?>
             <div class="form-group">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email"
-                       class="form-control"
-                       value="<?= $_POST['email'] ?>"
-                       placeholder="Informe o e-mail"
-                       autofocus>
+                       class="form-control <?= $errors['email'] ? 'is-invalid' : '' ?>"
+                       value="<?= $email ?>"
+                       placeholder="Informe o e-mail" autofocus>
+                <div class="invalid-feedback">
+                    <?= $errors['email'] ?>
+                </div>
             </div>
             <div class="form-group">
-                <label for="password"></label>
-                <input  type="password"
-                        id="password"
-                        name="password"
-                        class="form-control"
-                        placeholder="Informe a senha">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password"
+                       class="form-control <?= $errors['password'] ? 'is-invalid' : '' ?>"
+                       placeholder="Informe a senha">
+                <div class="invalid-feedback">
+                    <?= $errors['password'] ?>
+                </div>
             </div>
         </div>
         <div class="card-footer">
