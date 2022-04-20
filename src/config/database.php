@@ -28,6 +28,9 @@ class Database {
         return $result;
     }
 
+    /**
+     * @throws Exception
+     */
     public static function executeSQL($sql)
     {
         $connection = self::getConnection();
@@ -38,4 +41,5 @@ class Database {
         $connection->close();
         return $id;
     }
+
 }
